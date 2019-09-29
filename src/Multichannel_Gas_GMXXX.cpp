@@ -44,7 +44,7 @@ GAS_GMXXX<T>::GAS_GMXXX()
 * @return: None
 */
 template<class T>
-void GAS_GMXXX<T>::begin(T &wire = Wire, uint8_t address = 0x08)
+void GAS_GMXXX<T>::begin(T &wire, uint8_t address)
 {
   _Wire = &wire;
   _Wire->begin();
@@ -60,9 +60,11 @@ void GAS_GMXXX<T>::begin(T &wire = Wire, uint8_t address = 0x08)
 * @return: None
 */
 template<class T>
-void GAS_GMXXX<T>::setAddress(uint8_t address = 0x08)
+void GAS_GMXXX<T>::setAddress(uint8_t address)
 {
   GMXXX_ADDRESS = address;
+  preheated();
+  isPreheated = true;
 }
 
 
@@ -152,6 +154,7 @@ uint32_t GAS_GMXXX<T>::getGM302B()
   return GMXXXRead32();
 }
 
+#ifdef GM_402B
 /**
 * @description:  get the adc value of GM402B
 * @param {type}:  None
@@ -166,6 +169,7 @@ uint32_t GAS_GMXXX<T>::getGM402B()
   GMXXXWriteByte(GM_402B);
   return GMXXXRead32();
 }
+#endif
 
 /**
 * @description:  get the adc value of GM502B
@@ -197,6 +201,7 @@ uint32_t GAS_GMXXX<T>::getGM702B()
   return GMXXXRead32();
 }
 
+#ifdef GM_802B
 /**
 * @description:  get the adc value of GM802B
 * @param {type}:  None
@@ -211,6 +216,7 @@ uint32_t GAS_GMXXX<T>::getGM802B()
   GMXXXWriteByte(GM_802B);
   return GMXXXRead32();
 }
+#endif
 
 /**
 * @description:  change the I2C address of gas sonsor.
@@ -218,7 +224,7 @@ uint32_t GAS_GMXXX<T>::getGM802B()
 * @return: None
 */
 template<class T>
-void GAS_GMXXX<T>::changeGMXXXAddr(uint8_t address = 0x08)
+void GAS_GMXXX<T>::changeGMXXXAddr(uint8_t address)
 {
   if(address == 0 || address > 127){
     address = 0x08;

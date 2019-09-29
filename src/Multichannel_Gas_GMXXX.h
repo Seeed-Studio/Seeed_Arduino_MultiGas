@@ -32,13 +32,14 @@
   #include <Wire.h>
 #endif
 
+
 //command
 #define GM_102B 0x01
 #define GM_302B 0x03
-#define GM_402B 0x04
+//#define GM_402B 0x04
 #define GM_502B 0x05
 #define GM_702B 0x07
-#define GM_802B 0x08
+//#define GM_802B 0x08
 #define CHANGE_I2C_ADDR 0x55
 #define WARMING_UP 0xFE
 #define WARMING_DOWN  0xFF
@@ -48,22 +49,26 @@ class GAS_GMXXX
 {
 public:
 	GAS_GMXXX();
-    void begin(T &wire = Wire, uint8_t address = 0x08);
-    void setAddress(uint8_t address = 0x08);
+  void begin(T &wire = Wire, uint8_t address = 0x08);
+  void setAddress(uint8_t address = 0x08);
 	void preheated();
 	void unPreheated();
-    void changeGMXXXAddr(uint8_t address = 0x08);
+  void changeGMXXXAddr(uint8_t address = 0x08);
 	uint32_t getGM102B();
 	uint32_t getGM302B();
+  #ifdef GM_402B
 	uint32_t getGM402B();
+  #endif
 	uint32_t getGM502B();
 	uint32_t getGM702B();
+  #ifdef GM_802B
 	uint32_t getGM802B(); 
-    inline float calcVol(uint32_t adc){return (adc*3.3)/4096;};
+  #endif
+  inline float calcVol(uint32_t adc){return (adc*3.3)/4096;};
 private:
-    T *_Wire;
+  T *_Wire;
 	bool isPreheated;
-    uint8_t GMXXX_ADDRESS;
+  uint8_t GMXXX_ADDRESS;
 	void GMXXXWriteByte(uint8_t cmd);
 	uint32_t GMXXXRead32();
 };
