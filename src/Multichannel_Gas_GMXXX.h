@@ -32,6 +32,7 @@
   #include <Wire.h>
 #endif
 
+#define GM_RESOLUTION 1023
 
 //command
 #define GM_102B 0x01
@@ -64,7 +65,7 @@ public:
   #ifdef GM_802B
 	uint32_t getGM802B(); 
   #endif
-  inline float calcVol(uint32_t adc){return (adc*3.3)/4096;};
+  inline float calcVol(uint32_t adc){return (adc*3.3)/GM_RESOLUTION;};
 private:
   T *_Wire;
 	bool isPreheated;

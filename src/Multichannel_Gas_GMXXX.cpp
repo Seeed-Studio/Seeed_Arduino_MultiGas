@@ -79,6 +79,7 @@ void GAS_GMXXX<T>::GMXXXWriteByte(uint8_t cmd)
   _Wire->beginTransmission(GMXXX_ADDRESS); // transmit to device #4
   _Wire->write(cmd);              // sends one byte
   _Wire->endTransmission();    // stop transmitting
+  delay(1);
 }
 
 /**
@@ -97,6 +98,7 @@ uint32_t GAS_GMXXX<T>::GMXXXRead32()
     value += byte << (8 * index);
     index++;
   }
+  delay(1);
   return value;
 }
 
