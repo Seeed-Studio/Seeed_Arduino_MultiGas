@@ -1,35 +1,35 @@
 /*
-  Multichannel_Gas_GMXXX.h
-  Description: A drive for Seeed Grove Multichannel gas sensor V2.0.
-  2019 Copyright (c) Seeed Technology Inc.  All right reserved.
-  Author: Hongtai Liu(lht856@foxmail.com)
-  2019-6-18
-  
-  The MIT License (MIT)
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-  THE SOFTWARE.1  USA
+    Multichannel_Gas_GMXXX.h
+    Description: A drive for Seeed Grove Multichannel gas sensor V2.0.
+    2019 Copyright (c) Seeed Technology Inc.  All right reserved.
+    Author: Hongtai Liu(lht856@foxmail.com)
+    2019-6-18
+
+    The MIT License (MIT)
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.1  USA
 */
 #ifndef __GAS_GMXXX__
 #define __GAS_GMXXX__
 
 //#define SOFTWAREWIRE
 #ifdef SOFTWAREWIRE
-  #include <SoftwareWire.h>
-#else   
-  #include <Wire.h>
+    #include <SoftwareWire.h>
+#else
+    #include <Wire.h>
 #endif
 
 #define GM_RESOLUTION 1023
@@ -46,31 +46,32 @@
 #define WARMING_DOWN  0xFF
 
 template <class T>
-class GAS_GMXXX
-{
-public:
-	GAS_GMXXX();
-  void begin(T &wire = Wire, uint8_t address = 0x08);
-  void setAddress(uint8_t address = 0x08);
-	void preheated();
-	void unPreheated();
-  void changeGMXXXAddr(uint8_t address = 0x08);
-	uint32_t getGM102B();
-	uint32_t getGM302B();
-  #ifdef GM_402B
-	uint32_t getGM402B();
-  #endif
-	uint32_t getGM502B();
-	uint32_t getGM702B();
-  #ifdef GM_802B
-	uint32_t getGM802B(); 
-  #endif
-  inline float calcVol(uint32_t adc){return (adc*3.3)/GM_RESOLUTION;};
-private:
-  T *_Wire;
-	bool isPreheated;
-  uint8_t GMXXX_ADDRESS;
-	void GMXXXWriteByte(uint8_t cmd);
-	uint32_t GMXXXRead32();
+class GAS_GMXXX {
+  public:
+    GAS_GMXXX();
+    void begin(T& wire = Wire, uint8_t address = 0x08);
+    void setAddress(uint8_t address = 0x08);
+    void preheated();
+    void unPreheated();
+    void changeGMXXXAddr(uint8_t address = 0x08);
+    uint32_t getGM102B();
+    uint32_t getGM302B();
+    #ifdef GM_402B
+    uint32_t getGM402B();
+    #endif
+    uint32_t getGM502B();
+    uint32_t getGM702B();
+    #ifdef GM_802B
+    uint32_t getGM802B();
+    #endif
+    inline float calcVol(uint32_t adc) {
+        return (adc * 3.3) / GM_RESOLUTION;
+    };
+  private:
+    T* _Wire;
+    bool isPreheated;
+    uint8_t GMXXX_ADDRESS;
+    void GMXXXWriteByte(uint8_t cmd);
+    uint32_t GMXXXRead32();
 };
 #endif
