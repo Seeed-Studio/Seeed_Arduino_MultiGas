@@ -227,6 +227,7 @@ void GAS_GMXXX<T>::changeGMXXXAddr(uint8_t address) {
 
 #ifdef SOFTWAREWIRE
     template class GAS_GMXXX<SoftwareWire>;
-#else
-    template class GAS_GMXXX<TwoWire>;
 #endif
+
+template class GAS_GMXXX<TwoWire>;
+
