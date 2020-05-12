@@ -5,6 +5,8 @@ matrix:
         - BOARD="arduino:avr:uno"
     - env:
         - BOARD="Seeeduino:samd:seeed_XIAO_m0"
+    - env:
+        - BOARD="Seeeduino:samd:seeed_wio_terminal"
 # default phases
 before_install:
   - mkdir -p "$HOME/bin"
@@ -29,26 +31,45 @@ before_install:
 install:
   - mkdir -p $HOME/Arduino/libraries
 script:
-    - |
-      if [ "$BOARD" == "arduino:avr:uno" ]; then
-        buildExampleSketch demo_background;
-      fi
-    - |
-      if [ "$BOARD" == "arduino:avr:uno" ]; then
-        buildExampleSketch demo_terminal;
-      fi
-    - |
-      if [ "$BOARD" == "Seeeduino:samd:seeed_XIAO_m0" ]; then
-        buildExampleSketch demo_background;
-      fi
-    - |
-      if [ "$BOARD" == "Seeeduino:samd:seeed_XIAO_m0" ]; then
-        buildExampleSketch demo_terminal;
-      fi
+  - |
+    if [ "$BOARD" == "arduino:avr:uno" ]; then
+      buildExampleSketch demo_background;
+    fi
+  - |
+    if [ "$BOARD" == "arduino:avr:uno" ]; then
+      buildExampleSketch demo_background_V2;
+    fi
+  - |
+    if [ "$BOARD" == "arduino:avr:uno" ]; then
+      buildExampleSketch demo_terminal;
+    fi
+  - |
+    if [ "$BOARD" == "Seeeduino:samd:seeed_XIAO_m0" ]; then
+      buildExampleSketch demo_background;
+    fi
+  - |
+    if [ "$BOARD" == "Seeeduino:samd:seeed_XIAO_m0" ]; then
+      buildExampleSketch demo_background_V2;
+    fi
+  - |
+    if [ "$BOARD" == "Seeeduino:samd:seeed_XIAO_m0" ]; then
+      buildExampleSketch demo_terminal;
+    fi
+   - |
+    if [ "$BOARD" == "Seeeduino:samd:seeed_wio_terminal" ]; then
+      buildExampleSketch demo_background;
+    fi
+  - |
+    if [ "$BOARD" == "Seeeduino:samd:seeed_wio_terminal" ]; then
+      buildExampleSketch demo_background_V2;
+    fi
+  - |
+    if [ "$BOARD" == "Seeeduino:samd:seeed_wio_terminal" ]; then
+      buildExampleSketch demo_terminal;
+    fi
 notifications:
   webhooks:
     urls:
       - https://www.travisbuddy.com/
     on_success: never
     on_failure: always
-
