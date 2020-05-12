@@ -54,12 +54,16 @@ class GAS_GMXXX {
     void preheated();
     void unPreheated();
     void changeGMXXXAddr(uint8_t address = 0x08);
+    uint32_t measure_NO2(return getGM102B(););
     uint32_t getGM102B();
+    uint32_t measure_C2H5OH(return getGM302B(););
     uint32_t getGM302B();
     #ifdef GM_402B
     uint32_t getGM402B();
     #endif
+    uint32_t measure_VOC(return getGM502B(););
     uint32_t getGM502B();
+     uint32_t measure_CO(return getGM502B(););
     uint32_t getGM702B();
     #ifdef GM_802B
     uint32_t getGM802B();
