@@ -70,7 +70,7 @@ class GAS_GMXXX {
     };
     uint32_t getGM502B();
     uint32_t measure_CO(){
-        return getGM502B();
+        return getGM702B();
     };
     uint32_t getGM702B();
     #ifdef GM_802B
