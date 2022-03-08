@@ -53,13 +53,13 @@ void loop() {
     uint8_t i;
     uint32_t val = 0;
 
-    val = gas.measure_NO2(); Serial.print("NO2: "); Serial.print(val); Serial.print("  eq  ");
+    val = gas.measure_NO2(); Serial.print("NO2: "); Serial.print(val); Serial.print("  =  ");
     Serial.print(gas.calcVol(val)); Serial.println("V");
-    val = gas.measure_C2H5OH(); Serial.print("C2H5OH: "); Serial.print(val); Serial.print("  eq  ");
+    val = gas.measure_C2H5OH(); Serial.print("C2H5OH: "); Serial.print(val); Serial.print("  =  ");
     Serial.print(gas.calcVol(val)); Serial.println("V");
-    val = gas.measure_VOC(); Serial.print("VOC: "); Serial.print(val); Serial.print("  eq  ");
+    val = gas.measure_VOC(); Serial.print("VOC: "); Serial.print(val); Serial.print("  =  ");
     Serial.print(gas.calcVol(val)); Serial.println("V");
-    val = gas.measure_CO(); Serial.print("CO: "); Serial.print(val); Serial.print("  eq  ");
+    val = gas.measure_CO(); Serial.print("CO: "); Serial.print(val); Serial.print("  =  ");
     Serial.print(gas.calcVol(val)); Serial.println("V");
 
     delay(2000);

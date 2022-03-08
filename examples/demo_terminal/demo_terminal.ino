@@ -65,13 +65,13 @@ void loop() {
 
     if (len > 0) {
         switch (recv_cmd[0]) {
-            case '1': val = gas.getGM102B(); Serial.print("GM102B: "); Serial.print(val); Serial.print("  eq  ");
+            case '1': val = gas.getGM102B(); Serial.print("GM102B: "); Serial.print(val); Serial.print("  =  ");
                 Serial.print(gas.calcVol(val)); Serial.println("V"); break;
-            case '2': val = gas.getGM302B(); Serial.print("GM302B: "); Serial.print(val); Serial.print("  eq  ");
+            case '2': val = gas.getGM302B(); Serial.print("GM302B: "); Serial.print(val); Serial.print("  =  ");
                 Serial.print(gas.calcVol(val)); Serial.println("V"); break;
-            case '3': val = gas.getGM502B(); Serial.print("GM502B: "); Serial.print(val); Serial.print("  eq  ");
+            case '3': val = gas.getGM502B(); Serial.print("GM502B: "); Serial.print(val); Serial.print("  =  ");
                 Serial.print(gas.calcVol(val)); Serial.println("V"); break;
-            case '4': val = gas.getGM702B(); Serial.print("GM702B: "); Serial.print(val); Serial.print("  eq  ");
+            case '4': val = gas.getGM702B(); Serial.print("GM702B: "); Serial.print(val); Serial.print("  =  ");
                 Serial.print(gas.calcVol(val)); Serial.println("V"); break;
             case 'D': Serial.println("Unpreheated！The next read will automatically preheated！"); break;
             case 'M': //the cmd M100 mean that change the sensor I2C address to 100(0x64);

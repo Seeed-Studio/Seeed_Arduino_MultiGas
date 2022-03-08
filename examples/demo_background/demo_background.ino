@@ -53,13 +53,13 @@ void loop() {
     uint8_t i;
     uint32_t val = 0;
 
-    val = gas.getGM102B(); Serial.print("GM102B: "); Serial.print(val); Serial.print("  eq  ");
+    val = gas.getGM102B(); Serial.print("GM102B: "); Serial.print(val); Serial.print("  =  ");
     Serial.print(gas.calcVol(val)); Serial.println("V");
-    val = gas.getGM302B(); Serial.print("GM302B: "); Serial.print(val); Serial.print("  eq  ");
+    val = gas.getGM302B(); Serial.print("GM302B: "); Serial.print(val); Serial.print("  =  ");
     Serial.print(gas.calcVol(val)); Serial.println("V");
-    val = gas.getGM502B(); Serial.print("GM502B: "); Serial.print(val); Serial.print("  eq  ");
+    val = gas.getGM502B(); Serial.print("GM502B: "); Serial.print(val); Serial.print("  =  ");
     Serial.print(gas.calcVol(val)); Serial.println("V");
-    val = gas.getGM702B(); Serial.print("GM702B: "); Serial.print(val); Serial.print("  eq  ");
+    val = gas.getGM702B(); Serial.print("GM702B: "); Serial.print(val); Serial.print("  =  ");
     Serial.print(gas.calcVol(val)); Serial.println("V");
 
     delay(2000);
