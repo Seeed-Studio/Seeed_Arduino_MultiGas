@@ -32,6 +32,12 @@
     #include <Wire.h>
 #endif
 
+#if defined(ARDUINO_ARCH_AVR) // AVR verf 5V
+#define GM_VERF 5
+#else
+#define GM_VERF 3.3
+#endif
+
 #define GM_RESOLUTION 1023
 
 //command
@@ -76,8 +82,8 @@ class GAS_GMXXX {
     #ifdef GM_802B
     uint32_t getGM802B();
     #endif
-    inline float calcVol(uint32_t adc) {
-        return (adc * 3.3) / GM_RESOLUTION;
+    inline float calcVol(uint32_t adc, float verf = GM_VERF, int resolution = GM_RESOLUTION) {
+        return (adc * verf) / (resolution * 1.0);
     };
   private:
     T* _Wire;
